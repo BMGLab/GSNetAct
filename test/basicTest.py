@@ -9,18 +9,23 @@ import scanpy as sc
 import numpy as np
 
 
+#Get the files.
+
 jsonFile = pjson("/home/sadigungor/Desktop/pathway_scorers/test/test_data/big_genesets_relations.json")
 
-adata = sc.read_h5ad("/home/sadigungor/Desktop/pathway_scorers/test/test_data/pbmc3k.h5ad") 
+adata = sc.read_h5ad("/home/sadigungor/Desktop/pathway_scorers/test/test_data/pbmc3k.h5ad")
 
-for i in jsonFile : 
 
-    newGeneSet = GeneSet(f"{i}",jsonFile[i])
+for i in jsonFile : # Calculate for each gene set. 
+
+    newGeneSet = GeneSet(f"{i}",jsonFile[i]) # Create GeneSet Object
 
     print(newGeneSet.getID)
+ 
+    _geneNames = newGeneSet.getGeneNames # Get the gene names necessary for geneExpScores.score() from 
+                                         # GeneSet object.
 
-    _geneNames = newGeneSet.getGeneNames
+    newGeneSetScore = GeneSetScore(newGeneSet.getMatrix, _geneNames) # Create gene set score without 
+                                                                     # the expressions.
 
-    newGeneSetScore = GeneSetScore(newGeneSet.getMatrix, _geneNames)
-
-    print(score(adata,newGeneSetScore))
+    print(score(adata,newGeneSetScore)) # Merge expression scores with gene set scores and print
