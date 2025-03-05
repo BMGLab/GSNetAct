@@ -24,15 +24,16 @@ class pjson(dict):
 
         return repr(self.js)
 
+    @property
     def getGeneNames(self): # Acces the gene names
         return self.geneNamesList
-
+    @property
     def getGeneCounts(self): # Access the gene counts
         return self.geneSayi
-
+    @property
     def getGeneSetCount(self): # Access the gene set count
         return len(self.geneSayi)
-
+    @property
     def getFileInfo(self): # Access the file info as a string
         info = ""
 

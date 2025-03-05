@@ -10,10 +10,11 @@ import numpy as np
 
 
 #Get the files.
+jsonFilePath = "/home/sadigungor/Desktop/pathway_scorers/test/test_data/big_genesets_relations.json"
+jsonFile = pjson(jsonFilePath)
 
-jsonFile = pjson("/home/sadigungor/Desktop/pathway_scorers/test/test_data/big_genesets_relations.json")
-
-adata = sc.read_h5ad("/home/sadigungor/Desktop/pathway_scorers/test/test_data/pbmc3k.h5ad")
+h5adFilePath = "/home/sadigungor/Desktop/pathway_scorers/test/test_data/pbmc3k.h5ad"
+adata = sc.read_h5ad(h5adFilePath)
 
 
 for i in jsonFile : # Calculate for each gene set. 
