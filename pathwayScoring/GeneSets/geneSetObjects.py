@@ -80,20 +80,3 @@ class GeneSet:
         namesListBuffer = [i for i in self.asJson]
 
         return namesListBuffer
-
-if __name__ == "__main__":
-    newjson = pjson("/home/sadigungor/pathwayScoring/deneme.json")
- 
-    for y in newjson:
-        #a = GeneSetMatrix(newjson[y])
-
-        b = GeneSet("GeneSet1",newjson[y])
-
-        #print(a)
-        
-        print(b.getAsJson)
-        print(b.getMatrix)
-        print(b.getID)
-        print("## TESTING GENE NAMES LIST ## ")
-        print(b.getNamesList)
-        break 

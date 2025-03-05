@@ -44,13 +44,3 @@ class pjson(dict):
     def getFileName(self):
         return self.jsonFile
 
-if __name__ == "__main__":
-    
-    newjson = pjson("/home/sadigungor/pathwayScoring/deneme.json")
-    
-    #print(newjson.getFileInfo())
-
-    #for i in newjson:
-    #   print(i,"yeah")
-
-    print(newjson.getGeneNames())

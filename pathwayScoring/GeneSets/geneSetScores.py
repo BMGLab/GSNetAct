@@ -36,26 +36,3 @@ class GeneSetScore(dict):
             self[gene] = scores[i]
 
 
-if __name__ == "__main__" : 
-
-    newjson = pjson("/home/sadigungor/pathwayScoring/big_genesets_relations.json")
-    
-    y = 0
-    for i in newjson:
-        
-        y += 1
-        newGeneSet = GeneSet(f"GeneSet{y}",newjson[i])
-        
-        _geneNames = newGeneSet.getGeneNames
-        #print(newGeneSet.getAsJson)
-
-        
-        newGeneSetScore = GeneSetScore(newGeneSet.getMatrix,_geneNames)
-        
-        
-
-
-
-
-
-
