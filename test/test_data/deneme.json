@@ -1,0 +1,30 @@
+{
+	"GeneSet1": {
+		"TNRSF4": {
+			"CPSF3L": 0.35,
+			"ATAD3C": 0.77,
+			"C1orf86": 0.16
+		},
+		"CPSF3L": {
+			"TNRSF4": 0.35,
+			"ATAD3C": 0.51
+		},
+		"ATAD3C": {
+			"TNRSF4": 0.77,
+			"CPSF3L": 0.51,
+			"C1orf86": 0.40
+		},
+		"C1orf86": {
+			"TNRSF4": 0.16,
+			"ATAD3C": 0.40
+		}
+	},
+	"GeneSet2": {
+		"RER1": {
+			"TNFRSF25": 0.99
+		},
+		"TNFRSF25": {
+			"RER1": 0.99
+		}
+	}
+}
