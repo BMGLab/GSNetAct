@@ -1,10 +1,9 @@
-import scanpy as sc 
-import numpy as np
+from Scoring._annData import createObject
 
-adata = sc.read_h5ad("/home/sadigungor/Desktop/pathway_scorers/test/test_data/neutrophils_filtered.h5ad")
+adata_ = "/home/sadigungor/Desktop/testPathway/neutrophils_filtered.h5ad"
+jsonFile = "/home/sadigungor/Desktop/testPathway/840.json"
 
-print("########### PRINT VAR ##########")
-print(adata.var)
-print("########### PRINT X #############")
-print(adata.X)
+_adata = createObject(adata_,jsonFile,normalized=True)
 
+print(_adata.X)
+print(_adata.var)

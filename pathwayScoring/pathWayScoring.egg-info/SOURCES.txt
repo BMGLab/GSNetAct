@@ -1,0 +1,15 @@
+README.md
+setup.py
+pathwayScoring/Items/MatrixItem.py
+pathwayScoring/Items/__init__.py
+pathwayScoring/Scoring/__init__.py
+pathwayScoring/Scoring/_annData.py
+pathwayScoring/Scoring/GeneExpressions/__init__.py
+pathwayScoring/Scoring/GeneExpressions/geneExpScores.py
+pathwayScoring/Scoring/GeneSets/__init__.py
+pathwayScoring/Scoring/GeneSets/geneSetObjects.py
+pathwayScoring/Scoring/GeneSets/geneSetScores.py
+pathwayScoring/pathWayScoring.egg-info/PKG-INFO
+pathwayScoring/pathWayScoring.egg-info/SOURCES.txt
+pathwayScoring/pathWayScoring.egg-info/dependency_links.txt
+pathwayScoring/pathWayScoring.egg-info/top_level.txt

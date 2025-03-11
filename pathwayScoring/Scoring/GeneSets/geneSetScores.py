@@ -1,6 +1,7 @@
 import numpy as np
 
-from GeneSets.geneSetObjects import GeneSet
+from Scoring.GeneSets.geneSetObjects import createGeneSets
+
 
 from jsonParser import pjson
 
@@ -35,4 +36,14 @@ class GeneSetScore(dict):
         for i, gene in enumerate(geneNamesList): # Create the dictionary
             self[gene] = scores[i]
 
-    
+"""   
+def calculateScores(jsonFile):
+
+    arr = []
+
+    geneSetList = createGeneSets(jsonFile)
+
+    for geneset in geneSetList:
+        newGeneSetScore 
+
+"""

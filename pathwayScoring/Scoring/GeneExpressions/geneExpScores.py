@@ -1,8 +1,8 @@
 import scanpy as sc
 import numpy as np
 
-from GeneSets.geneSetScores import GeneSetScore 
-from GeneSets.geneSetObjects import GeneSet
+from Scoring.GeneSets.geneSetScores import GeneSetScore 
+from Scoring.GeneSets.geneSetObjects import GeneSet
 
 from jsonParser import pjson
 
