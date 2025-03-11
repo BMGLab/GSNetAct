@@ -1,11 +1,11 @@
 import numpy as np
 
-
 from GeneSets.geneSetObjects import GeneSet
 
 from jsonParser import pjson
 
 class GeneSetScore(dict):
+  
 
     def __init__(self, matrix, geneNamesList):
 
@@ -22,7 +22,7 @@ class GeneSetScore(dict):
         for col in range(num_cols):
             nonzero_rows = np.nonzero(matrix[:, col])[0] # Get nonzero rows. 
             
-            if nonzero_rows.size == 2: # All columns in the GeneSetMatrix object are gonna have only 2 elements that are different from 0, 
+            if nonzero_rows.size == 2: # All columns in the GeneSetMatrix object are gonna have only 2 elements that are different from 0,
                                        # control it just in case.
 
                 i, j = nonzero_rows # Get the two elements in a column to i,j
@@ -35,4 +35,4 @@ class GeneSetScore(dict):
         for i, gene in enumerate(geneNamesList): # Create the dictionary
             self[gene] = scores[i]
 
-
+    

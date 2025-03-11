@@ -7,23 +7,29 @@ class pjson(dict):
         self.jsonFile = jsonFile
         self.geneSayi = []
         self.geneNamesList = []
+        self.iter_count = 0
 
         with open(jsonFile) as f: #Load the json file
             self.js = json.load(f)
-
-        self.update(self.js) # Update the object so that it represents the content of the given JSON file.
 
         for i in self.js.values():
             
             for j in i.keys():
                 self.geneNamesList.append(j) # Get the gene names
             
-            self.geneSayi.append(len(i)) # Get the gene counts 
+            self.geneSayi.append(len(i)) # Get the gene counts
 
-    def __repr__(self):
+        self.update(self.js)
+ 
+    def genesets(self): # Return genesets in the JSON file, 
+                        # since they are represented in self.values().
+                        # Used for easier iteration.  
+        
+        return self.values()
 
-        return repr(self.js)
-
+    @property
+    def getAsDict(self):
+        return self.js
     @property
     def getGeneNames(self): # Acces the gene names
         return self.geneNamesList
@@ -44,4 +50,3 @@ class pjson(dict):
 
     def getFileName(self):
         return self.jsonFile
-

@@ -7,10 +7,13 @@ class GeneSetMatrix:
 
     """ Creates and returns the gene set as an incidence matrix. 
 
-        Why an incidence matrix?
 
-            If we think of the gene sets and the relations between genes, they are very similar to graphs. 
-            The best way to represent graphs mathematically is by using an incidence matrix.
+        If we think of the gene sets and the relations between genes, they are very similar to graphs. 
+            The best way to represent graphs mathematically is by using an incidence matrix. With incidence matrixes,
+            our mathematical formula can be solved for each geneset expeditiously.
+
+        The main idea is to create an incidence matrix with specific positions for each gene to make calculations
+            efficiently. In order to do this, we give each gene a specific column value.
 
     """
     
@@ -19,8 +22,10 @@ class GeneSetMatrix:
         unique_identifiers = {} # The unique identifiers dictionary to hold the data of the unique position 
                                 # of an edge(weight, relation whetever you wanna call it) in the matrix 
                                 # for faster calculations.
-        n1 = 0
-        sayac = 0
+        
+        
+        n1 = 0 
+        position_in_column = 0
         GeneList = []
 
         for i in rawGeneSet:
@@ -33,8 +38,8 @@ class GeneSetMatrix:
 
                 if unique_hash not in unique_identifiers: # If the edge is unique, give it a new position by giving                                                           
                                                           # it a new column value.
-                    unique_identifiers[unique_hash] = sayac
-                    sayac += 1
+                    unique_identifiers[unique_hash] = position_in_column
+                    position_in_column += 1
             
                 GeneList.append(MatrixItem(float(rawGeneSet[i][j]),n1-1,unique_identifiers[unique_hash]-1))
                 # Whether the edge is unique or not, create a MatrixItem to hold the position data and add it to
@@ -45,7 +50,7 @@ class GeneSetMatrix:
         matrix = np.zeros((n1,n)) # Create the matrix. TODO: Test the sparse matrix approach.
 
         for item in GeneList: # Build the incidence matrix using the position data in the GeneList.
-            w,r,c = item.value,item.row,item.column
+            w,r,c = item.weight,item.row,item.column
             matrix[r,c] = w
 
         return matrix
@@ -66,11 +71,6 @@ class GeneSet:
         return self.id
     
     @property
-    def getMatrix(self):
-
-        return self.matrix
-    
-    @property
     def getAsJson(self):
 
         return self.asJson
@@ -80,3 +80,18 @@ class GeneSet:
         namesListBuffer = [i for i in self.asJson]
 
         return namesListBuffer
+
+def createGeneSets(jsonFile): # Automatically create geneset objects and return them 
+                              # in a list.
+
+    _list = []
+    newJson = pjson(jsonFile)
+
+    for i in newJson:
+
+        newGeneSet = GeneSet(f"{i}",newJson[i])
+
+        _list.append(newGeneSet)
+
+    return _list
+

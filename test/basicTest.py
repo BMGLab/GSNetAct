@@ -1,9 +1,7 @@
-from GeneSets.geneSetObjects import GeneSet
+from GeneSets.geneSetObjects import createGeneSets
 from GeneSets.geneSetScores import GeneSetScore
 
 from GeneExpressions.geneExpScores import score
-
-from jsonParser import pjson
 
 import scanpy as sc
 import numpy as np
@@ -11,22 +9,23 @@ import numpy as np
 
 #Get the files.
 jsonFilePath = "/home/sadigungor/Desktop/pathway_scorers/test/test_data/big_genesets_relations.json"
-jsonFile = pjson(jsonFilePath)
 
 h5adFilePath = "/home/sadigungor/Desktop/pathway_scorers/test/test_data/pbmc3k.h5ad"
 adata = sc.read_h5ad(h5adFilePath)
 
+geneSetList = createGeneSets(jsonFilePath)
+for geneSet in geneSetList: # Calculate for each gene set. 
 
-for i in jsonFile : # Calculate for each gene set. 
-
-    newGeneSet = GeneSet(f"{i}",jsonFile[i]) # Create GeneSet Object
-
-    print(newGeneSet.getID)
  
-    _geneNames = newGeneSet.getGeneNames # Get the gene names necessary for geneExpScores.score() from 
-                                         # GeneSet object.
+    _geneNames = geneSet.getGeneNames # Get the gene names necessary for geneExpScores.score() from 
+                                      # GeneSet object.
 
-    newGeneSetScore = GeneSetScore(newGeneSet.getMatrix, _geneNames) # Create gene set score without 
-                                                                     # the expressions.
+    newGeneSetScore = GeneSetScore(geneSet.matrix, _geneNames) # Create gene set score without 
+                                                               # the expressions.
 
-    print(score(adata,newGeneSetScore)) # Merge expression scores with gene set scores and print
+    newScore = score(adata,newGeneSetScore)  # Merge expression scores with gene set scores and print
+
+    # Print geneset names, scores and the percentage of scores that are not 0 in the given geneset.
+    print(f"GENESET : {geneSet.getID}")
+    print(f"{newScore} \n NONZEROS : %{round(((np.count_nonzero(newScore)/len(newScore)) * 100),2)}")
+    print("######################################################################################################")
