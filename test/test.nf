@@ -1,6 +1,17 @@
 params.adataPath = "Not Defined"
 params.jsonPath = "Not Defined"
 
+log.info """\
+        
+        T E S T - P A T H W A Y - S C O R I N G
+
+        Path to .h5ad file : 
+            ${params.adataPath}
+
+        Path to JSON file : 
+            ${params.jsonPath}        
+
+        """
 
 process test {
     container 'sadigngr/test_lib'
