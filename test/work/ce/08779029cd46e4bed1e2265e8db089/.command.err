@@ -1,2 +1,0 @@
-/home/sadigungor/miniconda3/lib/python3.12/site-packages/sklearn/preprocessing/_data.py:2785: UserWarning: n_quantiles (1000) is greater than the total number of samples (50). n_quantiles is set to n_samples.
-  warnings.warn(
