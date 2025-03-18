@@ -21,7 +21,8 @@ process test {
     path path2 
     output:
     stdout
-
+    
+    
     script:
     """
     python3 -c '
