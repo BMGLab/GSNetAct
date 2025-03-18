@@ -36,6 +36,8 @@ class GeneSetScore(dict):
         for i, gene in enumerate(geneNamesList): # Create the dictionary
             self[gene] = scores[i]
 
+
+#TODO: Finish this function and test if it has any use.
 """   
 def calculateScores(jsonFile):
 

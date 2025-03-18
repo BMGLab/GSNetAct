@@ -6,4 +6,5 @@
 - Numpy
 - Scanpy
 - Dataclasses
-- json
+- Json
+- Scikit-learn (Should come with scanpy but still)
