@@ -54,3 +54,42 @@ that contains the scorings.
 
 For further explanation, check the test files in test/ folder.
 
+## File Format for Genesets 
+
+The file that contains genesets and their relations has to be like this : 
+```
+{
+	"GeneSet1": {
+		"Gene1": {
+			"Gene2": 0.35,
+			"Gene3": 0.77,
+			"Gene4": 0.16
+		},
+		"Gene2": {
+			"Gene1": 0.35,
+			"Gene3": 0.51
+		},
+		"Gene3": {
+			"Gene1": 0.77,
+			"Gene2": 0.51,
+			"Gene4": 0.40
+		},
+		"Gene4": {
+			"Gene1": 0.16,
+			"Gene3": 0.40
+		}
+	},
+	"GeneSet2": {
+		"Gene1": {
+			"Gene2": 0.99
+		},
+		"Gene2": {
+			"Gene1": 0.99
+		}
+	}
+}
+```
+
+Here, GeneSet1 looks like this: 
+
+/assets/images/genesets.png

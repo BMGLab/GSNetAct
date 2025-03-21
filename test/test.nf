@@ -31,8 +31,9 @@ process test {
     
     """
     python3 -c '
-    from Scoring._annData import createObject 
-    print(createObject("$path1","$path2",normalized=True).X)'
+    from Scoring._annData import createObject
+    print(createObject("$path1","$path2",normalized=True).X)
+    '
     """
 }
 
