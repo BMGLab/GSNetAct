@@ -14,23 +14,22 @@ Please cite this repository if you use this code in your work.
 ## Installing
 
 - Clone the repository from this source.
-'''
+```
 git clone https://github.com/BMGLab/pathway_scorers
-'''
+```
 
 - Then inside the project directory, do 
-'''
+```
 pip install .
-'''
-
-The package should be installed. You can use the * * -e * * flag for automatic updates.
+```
+The package should be installed. You can use the **-e** flag for automatic updates.
 
 ## Usage
 
 You can use every part of this package to develop a further approach to this algorithm.
 But for simple analysis, a basic use case below would be : 
 
-'''
+```
 #!/usr/bin/env python
 
 from Scoring._annData import createObject
@@ -45,9 +44,9 @@ df.columns = analysis_result_as_annData.var
 
 df.to_csv("output.csv",sep="\t")
 
-'''
+```
 
-This code firstly imports the * *createObject* * from the package, which is used for creating an AnnData object
+This code firstly imports the **createObject** from the package, which is used for creating an AnnData object
 using the analysis results. Then, we specify our file paths. The pathwayScoring package needs two file inputs,
 one gene expression data file, and one JSON file that contains genesets and their relations. We then call the 
 createObject function to get our files, analyzes them using the pathwayScoring's respected algorihm and creates an AnnData object using scanpy. We can use this object any way we want, for here it is used for creating a csv file 
