@@ -34,6 +34,8 @@ But for simple analysis, a basic use case below would be :
 
 from Scoring._annData import createObject
 
+import pandas as pd
+
 json_file_path = "Your Json File Path Containing Genesets and Their Relations."
 annData_path = "Your Expressions File Path, Containing Gene Expression Data That Can Be Interpreted as AnnData by Scanpy."
 
