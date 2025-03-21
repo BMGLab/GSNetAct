@@ -92,4 +92,4 @@ The file that contains genesets and their relations has to be like this :
 
 Here, GeneSet1 looks like this: 
 
-/assets/images/genesets.png
+![Graph for GeneSet1](/assets/images/genesets.png)
