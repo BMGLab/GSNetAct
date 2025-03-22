@@ -24,7 +24,7 @@ process test {
     
     output:
     
-    stdout
+    path "output.csv"
     
     
     script:
@@ -32,12 +32,23 @@ process test {
     """
     python3 -c '
     from Scoring._annData import createObject
-    print(createObject("$path1","$path2",normalized=True).X)
+    
+    import pandas as pd
+    
+    _adata = createObject("$path1","$path2",normalized=True)
+    
+    df = pd.DataFrame(_adata.X)
+    df.columns = _adata.var
+
+    df.to_csv("output.csv",sep="\t")
+
+    
     '
     """
 }
 
 workflow{
-
     test(params.adataPath,params.jsonPath).view()
+    
+    println("Output File Can Be Found On : ")
 }
