@@ -14,7 +14,8 @@ log.info """\
         """
 
 process test {
-   
+    // This process runs in the container that includes needed libraries for pathwayScoring
+    // and the pathwayScoring library itself.
     container 'sadigngr/test_lib'
    
     input:
@@ -28,6 +29,8 @@ process test {
     
     
     script:
+    
+    // Same thing as adatatest. Check adatatest.py for more information.
     
     """
     python3 -c '
@@ -51,4 +54,5 @@ workflow{
     test(params.adataPath,params.jsonPath).view()
     
     println("Output File Can Be Found On : ")
+    // Print the output.csv file's location in work/ .
 }
