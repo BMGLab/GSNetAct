@@ -5,4 +5,4 @@ from .GeneSets.geneSetScores import GeneSetScore
 
 from .Utils.jsonParser import pjson
 from .Utils.MatrixItem import MatrixItem
-from .Utils._annData import createObject 
+from .Utils._annData import createAdataObject 

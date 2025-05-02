@@ -1,4 +1,4 @@
-from ..GeneSets.geneSetObjects import createGeneSets
+from ..GeneSets.geneSetObjects import getGSNA
 from ..GeneSets.geneSetScores import GeneSetScore
 
 from ..GeneExpressions.geneExpScores import score
@@ -7,15 +7,15 @@ import numpy as np
 import scanpy as sc
 
 
-def createObject(adataPath, jsonPath, normalized=False):
+def createAdataObject(adataPath, jsonPath, normalized=False):
     # TODO : Print normalization process info.
 
     adata = sc.read_h5ad(adataPath)
     scoresArray = []
     geneSetNamesArray = []
 
-    geneSetList = createGeneSets(jsonPath)
-    
+    geneSetList = getGSNA(jsonPath)
+
     for geneset in geneSetList:
 
         geneSetNamesArray.append(geneset.getID)

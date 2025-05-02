@@ -48,7 +48,7 @@ class GeneSetMatrix:
             n1 += 1
 
             for j in rawGeneSet[i]:
-                
+
                 unique_hash = hash(i) * hash(j) * hash(rawGeneSet[i][j])
                 # Creating a unique hash to determine the
                 # unique position.
@@ -111,7 +111,7 @@ class GeneSet:
         return namesListBuffer
 
 
-def createGeneSets(jsonFile):
+def getGSNA(jsonFile):
     # Automatically create geneset objects and return them
     # in a list.
 
@@ -125,4 +125,3 @@ def createGeneSets(jsonFile):
         _list.append(newGeneSet)
 
     return _list
-

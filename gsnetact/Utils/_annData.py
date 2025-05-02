@@ -1,4 +1,4 @@
-from ..GeneSets.geneSetObjects import createGeneSets
+from ..GeneSets.geneSetObjects import getGSNA
 from ..GeneSets.geneSetScores import GeneSetScore
 
 from ..GeneExpressions.geneExpScores import score
@@ -7,16 +7,20 @@ import numpy as np
 import scanpy as sc
 
 
-def createObject(adataPath, jsonPath, normalized=False):
+def createAdataObject(adataPath, jsonPath, normalized=False):
     # TODO : Print normalization process info.
 
     adata = sc.read_h5ad(adataPath)
+
     scoresArray = []
     geneSetNamesArray = []
+    # Create arrays to store scores and names of gene sets
 
-    geneSetList = createGeneSets(jsonPath)
-    
+    geneSetList = getGSNA(jsonPath)
+    # Create GeneSet objects from the JSON file.
+
     for geneset in geneSetList:
+        # Calculate scores for each gene set.
 
         geneSetNamesArray.append(geneset.getID)
 
@@ -30,18 +34,18 @@ def createObject(adataPath, jsonPath, normalized=False):
 
     scoresArray = np.array(scoresArray).T
 
-    adataScores = sc.AnnData(X=scoresArray, var=geneSetNamesArray, 
+    adataScores = sc.AnnData(X=scoresArray, var=geneSetNamesArray,
                              obs=adata.obs)
 
     if normalized:
+        # If the normalized option is on, normalize the score data with
+        # Quantile normalization and Z-Score normalization.
 
         from sklearn.preprocessing import quantile_transform, StandardScaler
 
-        adataScores.X = quantile_transform(adataScores.X, axis=1, 
+        adataScores.X = quantile_transform(adataScores.X, axis=1,
                                            output_distribution="normal")
 
         adataScores.X = StandardScaler().fit_transform(adataScores.X)
 
     return adataScores
-
-

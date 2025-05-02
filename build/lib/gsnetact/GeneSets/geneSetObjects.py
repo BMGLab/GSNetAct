@@ -111,7 +111,7 @@ class GeneSet:
         return namesListBuffer
 
 
-def createGeneSets(jsonFile):
+def getGSNA(jsonFile):
     # Automatically create geneset objects and return them
     # in a list.
 
@@ -125,4 +125,3 @@ def createGeneSets(jsonFile):
         _list.append(newGeneSet)
 
     return _list
-
