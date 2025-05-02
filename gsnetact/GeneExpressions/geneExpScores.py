@@ -1,16 +1,6 @@
 import numpy as np
 
 
-class selam:
-
-    def __init__(self):
-        self.a = 5
-        self.b = 4
-
-    def multiply(self):
-        return self.a + self.b 
-
-
 def score(adata, geneSetScore):
 
     geneset = np.array([geneSetScore.get(var, 0.0) for var in adata.var_names])

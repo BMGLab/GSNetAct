@@ -19,8 +19,6 @@ class GeneSetScore(dict):
         row_nz_counts = np.count_nonzero(matrix, axis=1)
         # Get the non-zero element count for each row
 
-        # Create an empty matrix to hold the scores.
-
         for col in range(num_cols):
             nonzero_rows = np.nonzero(matrix[:, col])[0]
             # Get nonzero rows.
