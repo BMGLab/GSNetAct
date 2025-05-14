@@ -124,17 +124,3 @@ def getGSNA(jsonFile):
         _list.append(newGeneSet)
 
     return _list
-
-
-if __name__ == "__main__":
-    
-    rawSet = makeRawGeneset("/home/sadigungor/Downloads/h.all.v2024.1.Hs.json")
-    geneNamesList = []
-    for i in rawSet.values():
-        for j in i.keys():
-            geneNamesList.append(j)
-    print(geneNamesList)
-    
-
-    
-
