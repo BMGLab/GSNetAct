@@ -1,8 +1,13 @@
-from gsnetact import createAdataObject, makeJson
+from gsnetact import createAdataObject
 
 import pandas as pd
 
-makeJson("/home/sadigungor/Downloads/h.all.v2024.1.Hs.json")
+###########################################
+# from gsnetact import makeJson
+# makeJson("/home/sadigungor/Downloads/h.all.v2024.1.Hs.json")
+##########################################
+# ↑↑↑ Test JSON creator tool ↑↑↑
+
 
 adata_ = "./test_data/pbmc3k.h5ad"
 # The path to the h5ad file.

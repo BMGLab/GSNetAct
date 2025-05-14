@@ -32,14 +32,14 @@ But for simple analysis, a basic use case below would be :
 ```
 #!/usr/bin/env python
 
-from Scoring._annData import createObject
+from gsnetact import createAdataObject
 
 import pandas as pd
 
 json_file_path = "Your Json File Path Containing Genesets and Their Relations."
 annData_path = "Your Expressions File Path, Containing Gene Expression Data That Can Be Interpreted as AnnData by Scanpy."
 
-analysis_result_as_annData = createObject(annData_path,json_file_path,normalized=True)
+analysis_result_as_annData = createAdataObject(annData_path,json_file_path,normalized=True)
 
 df = pd.DataFrame(analysis_result_as_annData.X)
 df.columns = analysis_result_as_annData.var
@@ -91,7 +91,25 @@ The file that contains genesets and their relations has to be like this :
 	}
 }
 ```
-
 Here, GeneSet1 looks like this: 
 
 ![Graph for GeneSet1](/genesets.png)
+
+You can create this format easily though, check below.
+
+## JSON Creator Tool 
+
+You can create the needed JSON file containing genesets with the data from msigdb databases. All you need to do is : 
+
+```
+#!/usr/bin/env python
+
+from gsnetact import makeJson
+
+makeJson("Path to your msigdb JSON file.","Name of the JSON file containing genesets, name them whatever you want.")
+
+```
+The makeJson function takes your geneset names from msigdb data and finds the relations between individual genes 
+using the STRING database.
+
+
