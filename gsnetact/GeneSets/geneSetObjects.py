@@ -1,4 +1,4 @@
-import numpy as np 
+import numpy as np
 
 from ..Utils.MatrixItem import MatrixItem
 from ..Utils.jsonParser import pjson
@@ -35,7 +35,7 @@ class GeneSetMatrix:
     def __new__(cls, rawGeneSet):
 
         unique_identifiers = {}
-        # The unique identifiers dictionary to hold the data of the unique 
+        # The unique identifiers dictionary to hold the data of the unique
         # position of an edge(weight, relation whetever you wanna call it)
         # in the matrix for faster calculations.
 
@@ -56,14 +56,13 @@ class GeneSetMatrix:
                 if unique_hash not in unique_identifiers:
                     # If the edge is unique, give it a new position by giving
                     # it a new column value.
-                    
+
                     unique_identifiers[unique_hash] = position_in_column
                     position_in_column += 1
-            
-                GeneList.append(MatrixItem(float(rawGeneSet[i][j]), n1-1, 
+
+                GeneList.append(MatrixItem(float(rawGeneSet[i][j]), n1-1,
                                            unique_identifiers[unique_hash]-1))
-                
-                # Whether the edge is unique or not, create a MatrixItem 
+                # Whether the edge is unique or not, create a MatrixItem
                 # to hold the position data and add it to
                 # the GeneList.
 
@@ -73,9 +72,9 @@ class GeneSetMatrix:
         # Create the matrix. TODO: Test the sparse matrix approach.
 
         for item in GeneList:
-            # Build the incidence matrix using 
+            # Build the incidence matrix using
             # the position data in the GeneList.
-            
+
             w, r, c = item.weight, item.row, item.column
             matrix[r, c] = w
 
@@ -125,3 +124,17 @@ def getGSNA(jsonFile):
         _list.append(newGeneSet)
 
     return _list
+
+
+if __name__ == "__main__":
+    
+    rawSet = makeRawGeneset("/home/sadigungor/Downloads/h.all.v2024.1.Hs.json")
+    geneNamesList = []
+    for i in rawSet.values():
+        for j in i.keys():
+            geneNamesList.append(j)
+    print(geneNamesList)
+    
+
+    
+

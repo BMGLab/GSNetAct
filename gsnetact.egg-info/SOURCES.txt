@@ -14,3 +14,4 @@ gsnetact/Utils/MatrixItem.py
 gsnetact/Utils/__init__.py
 gsnetact/Utils/_annData.py
 gsnetact/Utils/jsonParser.py
+gsnetact/Utils/makeJsonFile.py

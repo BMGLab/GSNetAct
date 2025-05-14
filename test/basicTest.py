@@ -5,7 +5,7 @@ import numpy as np
 
 
 #Get the files.
-jsonFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/big_genesets_relations.json"
+jsonFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/deneme.json"
 
 h5adFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad"
 adata = sc.read_h5ad(h5adFilePath)
@@ -20,10 +20,11 @@ for geneSet in geneSetList:
     # GeneSet object.
 
     newGeneSetScore = GeneSetScore(geneSet.matrix, _geneNames)
+    print(newGeneSetScore)
     # Create gene set score without
     # the expressions.
     
-    newScore = score(adata, newGeneSetScore)  
+    newScore = score(adata, newGeneSetScore) 
     # Merge expression scores with gene set scores and print
 
 """

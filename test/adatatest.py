@@ -1,11 +1,13 @@
-from gsnetact import createAdataObject
+from gsnetact import createAdataObject, makeJson
 
 import pandas as pd
+
+makeJson("/home/sadigungor/Downloads/h.all.v2024.1.Hs.json")
 
 adata_ = "./test_data/pbmc3k.h5ad"
 # The path to the h5ad file.
 
-jsonFile = "/home/sadigungor/Desktop/testPathway/840.json"
+jsonFile = "./test_data/big_genesets_relations.json"
 # The path to the JSON file.
 
 _adata = createAdataObject(adata_, jsonFile, normalized=True)
