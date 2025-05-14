@@ -1,0 +1,72 @@
+Apr-29 11:32:26.692 [main] DEBUG nextflow.cli.Launcher - $> nextflow run test.nf sadigngr/test_lib --adataPath /home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad --jsonPath /home/sadigungor/Desktop/GSNetAct/test/test_data/big_genesets_relations.json
+Apr-29 11:32:26.894 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.1
+Apr-29 11:32:26.945 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/sadigungor/.nextflow/plugins; core-plugins: nf-amazon@2.9.1,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.2,nf-tower@1.9.3,nf-wave@1.7.3
+Apr-29 11:32:26.983 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Apr-29 11:32:26.986 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Apr-29 11:32:26.994 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Apr-29 11:32:27.023 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Apr-29 11:32:27.064 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/sadigungor/Desktop/GSNetAct/test/nextflow.config
+Apr-29 11:32:27.070 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/sadigungor/Desktop/GSNetAct/test/nextflow.config
+Apr-29 11:32:27.115 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/sadigungor/.nextflow/secrets/store.json
+Apr-29 11:32:27.121 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@34dc85a] - activable => nextflow.secret.LocalSecretsProvider@34dc85a
+Apr-29 11:32:27.144 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Apr-29 11:32:27.914 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Apr-29 11:32:27.942 [main] DEBUG nextflow.cli.CmdRun - Launching `test.nf` [thirsty_murdock] DSL2 - revision: 9ecf1c48ad
+Apr-29 11:32:27.944 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Apr-29 11:32:27.945 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Apr-29 11:32:28.040 [main] DEBUG nextflow.Session - Session UUID: 87fcf173-2346-4511-a4f9-c21b9d84765c
+Apr-29 11:32:28.041 [main] DEBUG nextflow.Session - Run name: thirsty_murdock
+Apr-29 11:32:28.042 [main] DEBUG nextflow.Session - Executor pool size: 8
+Apr-29 11:32:28.059 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Apr-29 11:32:28.071 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Apr-29 11:32:28.111 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.10.1 build 5930
+  Created: 18-11-2024 12:21 UTC (15:21 TRST)
+  System: Linux 6.11.0-19-generic
+  Runtime: Groovy 4.0.23 on OpenJDK 64-Bit Server VM 11.0.13+7-b1751.21
+  Encoding: UTF-8 (UTF-8)
+  Process: 36550@sadis-computer [172.17.0.1]
+  CPUs: 8 - Mem: 7.6 GB (3.7 GB) - Swap: 11.5 GB (8.1 GB)
+Apr-29 11:32:28.150 [main] DEBUG nextflow.Session - Work-dir: /home/sadigungor/Desktop/GSNetAct/test/work [ext2/ext3]
+Apr-29 11:32:28.151 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/sadigungor/Desktop/GSNetAct/test/bin
+Apr-29 11:32:28.170 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Apr-29 11:32:28.190 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Apr-29 11:32:28.240 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Apr-29 11:32:28.260 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Apr-29 11:32:28.422 [main] DEBUG nextflow.Session - Session start
+Apr-29 11:32:28.970 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-29 11:32:29.003 [main] INFO  nextflow.Nextflow -         
+        T E S T - P A T H W A Y - S C O R I N G
+
+        Path to .h5ad file : 
+            /home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad
+
+        Path to JSON file : 
+            /home/sadigungor/Desktop/GSNetAct/test/test_data/big_genesets_relations.json        
+
+        
+Apr-29 11:32:29.193 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Apr-29 11:32:29.194 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Apr-29 11:32:29.206 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Apr-29 11:32:29.218 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=7.6 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Apr-29 11:32:29.222 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Apr-29 11:32:29.500 [main] INFO  nextflow.script.BaseScript - Output File Can Be Found On : 
+Apr-29 11:32:29.505 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: test
+Apr-29 11:32:29.506 [main] DEBUG nextflow.Session - Igniting dataflow network (1)
+Apr-29 11:32:29.507 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > test
+Apr-29 11:32:29.509 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_76d4f28683c64826: /home/sadigungor/Desktop/GSNetAct/test/test.nf
+Apr-29 11:32:29.509 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Apr-29 11:32:29.509 [main] DEBUG nextflow.Session - Session await
+Apr-29 11:32:29.904 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Apr-29 11:32:29.910 [Task submitter] INFO  nextflow.Session - [13/6725b4] Submitted process > test
+Apr-29 11:32:43.172 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: test; status: COMPLETED; exit: 0; error: -; workDir: /home/sadigungor/Desktop/GSNetAct/test/work/13/6725b4609c6016c76641ea1819396a]
+Apr-29 11:32:43.174 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Apr-29 11:32:43.219 [main] DEBUG nextflow.Session - Session await > all processes finished
+Apr-29 11:32:43.267 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Apr-29 11:32:43.268 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Apr-29 11:32:43.274 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Apr-29 11:32:43.293 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=13.2s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Apr-29 11:32:43.507 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Apr-29 11:32:43.547 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Apr-29 11:32:43.548 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

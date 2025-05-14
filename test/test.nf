@@ -44,8 +44,7 @@ process test {
     df.columns = _adata.var
 
     df.to_csv("output.csv",sep="\t")
-
-    
+ 
     '
     """
 }
