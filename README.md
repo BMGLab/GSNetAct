@@ -1,4 +1,4 @@
-# pathway_scorers
+# GSNetAct
 
 Please cite this repository if you use this code in your work.
 
