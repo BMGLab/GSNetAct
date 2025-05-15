@@ -52,5 +52,3 @@ class GeneSetScore(dict):
 
             if np.count_nonzero(row) == 0:
                 self[geneNamesList[rowidx]] += self.epsilon
-
-             
