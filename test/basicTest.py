@@ -14,7 +14,7 @@ geneSetList = getGSNA(jsonFilePath)
 arr = []
 for geneSet in geneSetList:
     # Calculate for each gene set.
-
+    print(geneSet.matrix)
     _geneNames = geneSet.getGeneNames
     # Get the gene names necessary for geneExpScores.score() from
     # GeneSet object.

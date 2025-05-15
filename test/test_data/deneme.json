@@ -17,9 +17,14 @@
 		"C1orf86": {
 			"TNRSF4": 0.16,
 			"ATAD3C": 0.40
+		},
+		"DNM1": {
 		}
+
 	},
 	"GeneSet2": {
+		"DNM2": {
+		},
 		"RER1": {
 			"TNFRSF25": 0.99
 		},

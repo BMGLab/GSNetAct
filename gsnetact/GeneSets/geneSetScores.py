@@ -3,7 +3,9 @@ import numpy as np
 
 class GeneSetScore(dict):
 
-    def __init__(self, matrix, geneNamesList):
+    def __init__(self, matrix, geneNamesList, epsilon=10**-6):
+
+        self.epsilon = epsilon
 
         self.matrix = matrix
 
@@ -38,3 +40,17 @@ class GeneSetScore(dict):
 
                 self[geneNamesList[j]] += matrix[j, col] * row_nz_counts[i]
                 # Vice versa.
+
+        for rowidx, row in enumerate(matrix):
+            # Search for rows that contain only zeros,
+            # Those are the genes that are not related to
+            # any other gene. If you find one, add epsilon to
+            # the score of the respected gene, which is 0.
+
+            # This way, genes that are not in relation to others
+            # can have an effect to the score.
+
+            if np.count_nonzero(row) == 0:
+                self[geneNamesList[rowidx]] += self.epsilon
+
+             
