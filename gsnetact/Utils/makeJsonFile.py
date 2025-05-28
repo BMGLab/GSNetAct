@@ -69,6 +69,8 @@ def fetch_all_networks_parallel(gene_sets, max_workers=25):
 
     return results
 
+# TODO: FARKLI DOSYA BICIMLERI EKLE
+
 
 def makeJson(msigdbFile, jsonFileName="geneSets.json"):
     with open(msigdbFile, 'r') as f:

@@ -4,19 +4,18 @@ from ..GeneSets.geneSetScores import GeneSetScore
 from ..GeneExpressions.geneExpScores import score
 
 import numpy as np
-import scanpy as sc
+
+from scanpy import AnnData
 
 
-def createAdataObject(adataPath, jsonPath, normalized=False):
+def runGSNA(adata, jsonFile, normalized=False):
     # TODO : Print normalization process info.
-
-    adata = sc.read_h5ad(adataPath)
 
     scoresArray = []
     geneSetNamesArray = []
     # Create arrays to store scores and names of gene sets
 
-    geneSetList = getGSNA(jsonPath)
+    geneSetList = getGSNA(jsonFile)
     # Create GeneSet objects from the JSON file.
 
     for geneset in geneSetList:
@@ -34,8 +33,8 @@ def createAdataObject(adataPath, jsonPath, normalized=False):
 
     scoresArray = np.array(scoresArray).T
 
-    adataScores = sc.AnnData(X=scoresArray, var=geneSetNamesArray,
-                             obs=adata.obs)
+    adataScores = AnnData(X=scoresArray, var=geneSetNamesArray,
+                          obs=adata.obs)
 
     if normalized:
         # If the normalized option is on, normalize the score data with

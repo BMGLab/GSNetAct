@@ -38,5 +38,3 @@ for geneSet in geneSetList:
 """
 
 arr = np.array(arr)
-
-np.savetxt("output.txt",arr)

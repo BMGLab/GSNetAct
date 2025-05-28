@@ -1,7 +1,6 @@
 import numpy as np
 
 from ..Utils.MatrixItem import MatrixItem
-from ..Utils.jsonParser import pjson
 
 
 class GeneSetMatrix:
@@ -84,18 +83,18 @@ class GeneSetMatrix:
 class GeneSet:
 
     """ Holds the properties of a gene set. """
-    
+
     def __init__(self, _id, _rawGeneSet):
-        
+
         self.id = _id
         self.asJson = _rawGeneSet
         self.matrix = GeneSetMatrix(_rawGeneSet)
-    
+
     @property
     def getID(self):
 
         return self.id
-    
+
     @property
     def getAsJson(self):
 
@@ -104,7 +103,7 @@ class GeneSet:
     @property
     def getGeneNames(self):
         # Access gene names as a list
-        
+
         namesListBuffer = [i for i in self.asJson]
 
         return namesListBuffer
@@ -115,11 +114,10 @@ def getGSNA(jsonFile):
     # in a list.
 
     _list = []
-    newJson = pjson(jsonFile)
 
-    for i in newJson:
+    for i in jsonFile:
 
-        newGeneSet = GeneSet(f"{i}", newJson[i])
+        newGeneSet = GeneSet(f"{i}", jsonFile[i])
 
         _list.append(newGeneSet)
 
