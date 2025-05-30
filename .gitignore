@@ -18,3 +18,5 @@ MANIFEST
 
 .nextflow/
 .nextflow.log*
+
+README_PACKAGE.md

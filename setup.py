@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
-with open("README.md","r") as f:
+with open("README_PACKAGE.md", "r") as f:
     desc = f.read()
 
 setup(name="gsnetact", 
       
       version="0.0.1",
 
-      description="The pathway scoring algorithm as a python package.",
+      description="The GSNetAct Python Package.",
         
       long_description=desc,
     
