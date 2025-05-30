@@ -12,7 +12,7 @@ import pandas as pd
 adata_ = sc.read_h5ad("/home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad")
 # The path to the h5ad file.
 
-jsonFile = pjson("/home/sadigungor/Desktop/GSNetAct/test/test_data/big_genesets_relations.json")
+jsonFile = pjson("/home/sadigungor/Desktop/GSNetAct/test/test_data/deneme.json")
 # The path to the JSON file.
 
 gsnaObject = runGSNA(adata_, jsonFile, normalized=True)
