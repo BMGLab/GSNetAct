@@ -5,7 +5,7 @@ from ..GeneExpressions.geneExpScores import score
 
 import numpy as np
 
-from scanpy import AnnData
+from anndata import AnnData
 
 
 def runGSNA(adata, jsonFile, normalized=False):
