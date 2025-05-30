@@ -1,4 +1,4 @@
-from .GeneExpressions.geneExpScores import score
+from .GeneExpressions.geneExpScores import expScore
 
 from .GeneSets.geneSetObjects import GeneSetMatrix, GeneSet, getGSNA
 from .GeneSets.geneSetScores import GeneSetScore

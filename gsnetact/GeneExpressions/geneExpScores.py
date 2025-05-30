@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def score(adata, geneSetScore):
+def expScore(adata, geneSetScore):
 
     geneset = np.array([geneSetScore.get(var, 0.0) for var in adata.var_names])
     # Create a 1D array for the given Gene Set
