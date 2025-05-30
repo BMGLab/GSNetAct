@@ -10,12 +10,19 @@ Please cite this repository if you use this code in your work.
 - Dataclasses
 - Json
 - Scikit-learn (Should come with scanpy but still)
+- Requests
 
 ## Installing
 
-- Clone the repository from this source.
+#### Directly install latest version with pip
+
 ```
-git clone https://github.com/BMGLab/pathway_scorers
+pip install gsnetact
+```
+
+#### Or clone the repository from this source.
+```
+git clone https://github.com/BMGLab/GSNetAct
 ```
 
 - Then inside the project directory, do 
@@ -32,19 +39,28 @@ But for simple analysis, a basic use case below would be :
 ```
 #!/usr/bin/env python
 
-from gsnetact import createAdataObject
+from gsnetact import runGSNA
 
+import scanpy as sc
 import pandas as pd
 
-json_file_path = "Your Json File Path Containing Genesets and Their Relations."
-annData_path = "Your Expressions File Path, Containing Gene Expression Data That Can Be Interpreted as AnnData by Scanpy."
+adata_ = sc.read_h5ad("./test_data/pbmc3k.h5ad")
+# Read the anndata object.
 
-analysis_result_as_annData = createAdataObject(annData_path,json_file_path,normalized=True)
+jsonFile = pjson("./test_data/deneme.json")
+# Parse the json file into a pjson() object.
 
-df = pd.DataFrame(analysis_result_as_annData.X)
-df.columns = analysis_result_as_annData.var
+gsnaObject = runGSNA(adata_, jsonFile, normalized=True)
+# Call the createObject function from the package.
 
-df.to_csv("output.csv",sep="\t")
+df = pd.DataFrame(gsnaObject.X)
+# Create a pandas dataframe from the AnnData object's X layer.
+
+df.columns = gsnaObject.var
+# Set the column names to the geneset names that are located in the var layer.
+
+df.to_csv("output.csv", sep="\t")
+# Create an output file, named  as output.csv.
 
 ```
 

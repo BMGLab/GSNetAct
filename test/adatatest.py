@@ -9,11 +9,11 @@ import pandas as pd
 ##############################################################
 # ↑↑↑↑↑ Test makeJson module ↑↑↑↑↑
 
-adata_ = sc.read_h5ad("/home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad")
-# The path to the h5ad file.
+adata_ = sc.read_h5ad("./test_data/pbmc3k.h5ad")
+# Read the anndata object.
 
-jsonFile = pjson("/home/sadigungor/Desktop/GSNetAct/test/test_data/deneme.json")
-# The path to the JSON file.
+jsonFile = pjson("./test_data/deneme.json")
+# Parse the json file into a pjson() object.
 
 gsnaObject = runGSNA(adata_, jsonFile, normalized=True)
 # Call the createObject function from the package.
