@@ -1,5 +1,5 @@
 from gsnetact import runGSNA, pjson
-import scanpy as sc
+from anndata import read_h5ad
 import pandas as pd
 
 
@@ -9,10 +9,10 @@ import pandas as pd
 ##############################################################
 # ↑↑↑↑↑ Test makeJson module ↑↑↑↑↑
 
-adata_ = sc.read_h5ad("./test_data/pbmc3k.h5ad")
+adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
 # Read the anndata object.
 
-jsonFile = pjson("./test_data/deneme.json")
+jsonFile = pjson("./test_data/big_genesets_relations.json")
 # Parse the json file into a pjson() object.
 
 gsnaObject = runGSNA(adata_, jsonFile, normalized=True)

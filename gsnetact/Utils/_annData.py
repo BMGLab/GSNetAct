@@ -1,7 +1,7 @@
 from ..GeneSets.geneSetObjects import getGSNA
 from ..GeneSets.geneSetScores import GeneSetScore
 
-from ..GeneExpressions.geneExpScores import score
+from ..GeneExpressions.geneExpScores import expScore
 
 import numpy as np
 
@@ -27,7 +27,7 @@ def runGSNA(adata, jsonFile, normalized=False):
 
         newGeneSetScore = GeneSetScore(geneset.matrix, _geneNames)
 
-        newExpScore = score(adata, newGeneSetScore)
+        newExpScore = expScore(adata, newGeneSetScore)
 
         scoresArray.append(newExpScore)
 
