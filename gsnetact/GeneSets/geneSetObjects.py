@@ -38,17 +38,14 @@ class GeneSetMatrix:
         # position of an edge(weight, relation whetever you wanna call it)
         # in the matrix for faster calculations.
 
-        n1 = 0
-
         position_in_column = 0
         GeneList = []
 
-        for i in rawGeneSet:
-            n1 += 1
+        for geneCount, gene in enumerate(rawGeneSet):
 
-            for j in rawGeneSet[i]:
+            for relatedGene in rawGeneSet[gene]:
 
-                unique_hash = hash(i) * hash(j) * hash(rawGeneSet[i][j])
+                unique_hash = hash(gene) * hash(relatedGene) * hash(rawGeneSet[gene][relatedGene])
                 # Creating a unique hash to determine the
                 # unique position.
 
@@ -59,7 +56,8 @@ class GeneSetMatrix:
                     unique_identifiers[unique_hash] = position_in_column
                     position_in_column += 1
 
-                GeneList.append(MatrixItem(float(rawGeneSet[i][j]), n1-1,
+                GeneList.append(MatrixItem(float(rawGeneSet[gene][relatedGene]),
+                                           geneCount-1,
                                            unique_identifiers[unique_hash]-1))
                 # Whether the edge is unique or not, create a MatrixItem
                 # to hold the position data and add it to
@@ -67,7 +65,7 @@ class GeneSetMatrix:
 
         n = len(unique_identifiers)
 
-        matrix = np.zeros((n1, n))
+        matrix = np.zeros((geneCount, n))
         # Create the matrix. TODO: Test the sparse matrix approach.
 
         for item in GeneList:

@@ -1,4 +1,4 @@
-from gsnetact import getGSNA, GeneSetScore, score
+from gsnetact import getGSNA, GeneSetScore, expScore, pjson
 
 import scanpy as sc
 import numpy as np
@@ -7,9 +7,11 @@ import numpy as np
 #Get the files.
 jsonFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/deneme.json"
 
+jsonFile = pjson(jsonFilePath)
+
 h5adFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad"
 adata = sc.read_h5ad(h5adFilePath)
-geneSetList = getGSNA(jsonFilePath)
+geneSetList = getGSNA(jsonFile)
 
 arr = []
 for geneSet in geneSetList:
@@ -24,7 +26,7 @@ for geneSet in geneSetList:
     # Create gene set score without
     # the expressions.
     
-    newScore = score(adata, newGeneSetScore) 
+    newScore = expScore(adata, newGeneSetScore) 
     # Merge expression scores with gene set scores and print
 
 """
@@ -37,4 +39,3 @@ for geneSet in geneSetList:
     print("######################################################################################################")
 """
 
-arr = np.array(arr)

@@ -34,6 +34,7 @@ class GeneSetScore(dict):
         # can have an effect to the score.
 
         for col in range(num_cols):
+
             i, j = np.nonzero(matrix[:, col])[0]
             # Get nonzero rows as i,j
 
