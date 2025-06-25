@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import json
 import gc
+import sys
+import argparse
 
 
 def create_session():
@@ -145,3 +147,19 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
 
     with open(jsonFileName, "w") as f:
         json.dump(relation_dict, f, indent=2)
+
+
+def makeJson_console():
+    parser = argparse.ArgumentParser(description="Run makeJson")
+
+    parser.add_argument("--geneSymbols",
+                        help="Path to gene symbols file.")
+
+    parser.add_argument("--fileType",
+                        help="File type of your gene symbols file.")
+
+    parser.add_argument("--output", "-o",
+                        help="Output file.")
+
+    args = parser.parse_args()
+    makeJson(args.geneSymbols, args.fileType, args.output)

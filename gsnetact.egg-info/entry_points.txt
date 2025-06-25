@@ -1,0 +1,2 @@
+[console_scripts]
+makeJson = gsnetact.Utils.makeJsonFile:makeJson_console

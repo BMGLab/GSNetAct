@@ -4,6 +4,7 @@ gsnetact/__init__.py
 gsnetact.egg-info/PKG-INFO
 gsnetact.egg-info/SOURCES.txt
 gsnetact.egg-info/dependency_links.txt
+gsnetact.egg-info/entry_points.txt
 gsnetact.egg-info/top_level.txt
 gsnetact/GeneExpressions/__init__.py
 gsnetact/GeneExpressions/geneExpScores.py
