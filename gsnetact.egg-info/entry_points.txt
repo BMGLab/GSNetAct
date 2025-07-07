@@ -1,2 +1,2 @@
 [console_scripts]
-makeJson = gsnetact.Utils.makeJsonFile:makeJson_console
+makeGeneSets = gsnetact.Utils.makeJsonFile:makeJson_console

@@ -12,7 +12,7 @@ import pandas as pd
 adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
 # Read the anndata object.
 
-jsonFile = pjson("./test_data/big_genesets_relations.json")
+jsonFile = pjson("/home/sadi/Desktop/c8.all.v2025.1.Hs.json")
 # Parse the json file into a pjson() object.
 
 gsnaObject = runGSNA(adata_, jsonFile, normalized=True)

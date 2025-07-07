@@ -1,8 +1,11 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: gsnetact
-Version: 0.0.4
+Version: 0.0.6
 Summary: The GSNetAct Python Package.
 Description-Content-Type: text/markdown
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: summary
 
 # GSNetAct
 
@@ -70,7 +73,7 @@ df.to_csv("output.csv", sep="\t")
 
 ```
 
-This code firstly imports the **runGSNA** from the package, which is used for creating an AnnData object
+This code firstly imports the **createObject** from the package, which is used for creating an AnnData object
 using the analysis results. Then, we specify our file paths. The pathwayScoring package needs two file inputs,
 one gene expression data file, and one JSON file that contains genesets and their relations. We then call the 
 createObject function to get our files, analyzes them using the pathwayScoring's respected algorihm and creates an AnnData object using scanpy. We can use this object any way we want, for here it is used for creating a csv file 
@@ -113,6 +116,9 @@ The file that contains genesets and their relations has to be like this :
 	}
 }
 ```
+Here, GeneSet1 looks like this: 
+
+![Graph for GeneSet1](/genesets.png)
 
 You can create this format easily though, check below.
 

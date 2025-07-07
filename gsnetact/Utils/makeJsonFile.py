@@ -5,7 +5,6 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import json
 import gc
-import sys
 import argparse
 
 
@@ -81,7 +80,7 @@ def parse_gmt(file_path):
     gene_sets = {}
     with open(file_path, "r") as f:
         for line in f:
-            parts = line.strip().split("\t")
+            parts = line.strip().replace(" ","").split("\t")
             if len(parts) < 3:
                 continue
             gene_set_name = parts[0]
@@ -94,7 +93,7 @@ def parse_tsv(file_path):
     gene_sets = {}
     with open(file_path, "r") as f:
         for line in f:
-            parts = line.strip().split("\t")
+            parts = line.strip().replace(" ","").split("\t")
             if len(parts) < 2:
                 continue
             gene_set_name = parts[0]
@@ -115,7 +114,7 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
         gene_sets = parse_tsv(msigdbFile)
     else:
         raise ValueError(f"Unsupported file type: {fileType}")
-
+    
     all_networks = fetch_all_networks_parallel(gene_sets, max_workers=40)
 
     relation_dict = {}

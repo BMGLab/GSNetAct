@@ -5,7 +5,7 @@ with open("README_PACKAGE.md", "r") as f:
 
 setup(name="gsnetact",
 
-      version="0.0.4",
+      version="0.0.6",
 
       description="The GSNetAct Python Package.",
 
