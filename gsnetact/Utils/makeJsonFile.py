@@ -118,34 +118,42 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
     all_networks = fetch_all_networks_parallel(gene_sets, max_workers=40)
 
     relation_dict = {}
+    
+    try:
+        for gene_set_id, interactions in all_networks.items():
+            
+            if interactions == None:
+                print(f"Warning: The gene set {gene_set_id} could not be processed. This may have been caused by a network issue. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct")
+                continue
 
-    for gene_set_id, interactions in all_networks.items():
-        setBuffer = set()
-        for interaction in interactions:
-            node1 = interaction['preferredName_A']
-            node2 = interaction['preferredName_B']
-            combined_score = interaction['score']
+            setBuffer = set()
+            for interaction in interactions:
+                node1 = interaction['preferredName_A']
+                node2 = interaction['preferredName_B']
+                combined_score = interaction['score']
 
-            setBuffer.add(node1)
-            setBuffer.add(node2)
+                setBuffer.add(node1)
+                setBuffer.add(node2)
 
-            if gene_set_id not in relation_dict:
-                relation_dict[gene_set_id] = {}
+                if gene_set_id not in relation_dict:
+                    relation_dict[gene_set_id] = {}
 
-            if node1 not in relation_dict[gene_set_id]:
-                relation_dict[gene_set_id][node1] = {}
-            relation_dict[gene_set_id][node1][node2] = combined_score
+                if node1 not in relation_dict[gene_set_id]:
+                    relation_dict[gene_set_id][node1] = {}
+                relation_dict[gene_set_id][node1][node2] = combined_score
 
-            if node2 not in relation_dict[gene_set_id]:
-                relation_dict[gene_set_id][node2] = {}
-            relation_dict[gene_set_id][node2][node1] = combined_score
+                if node2 not in relation_dict[gene_set_id]:
+                    relation_dict[gene_set_id][node2] = {}
+                relation_dict[gene_set_id][node2][node1] = combined_score
 
-        for i in gene_sets[gene_set_id]['geneSymbols']:
-            if i not in setBuffer:
-                relation_dict[gene_set_id][i] = {}
+            for i in gene_sets[gene_set_id]['geneSymbols']:
+                if i not in setBuffer:
+                    relation_dict[gene_set_id][i] = {}
 
-    with open(jsonFileName, "w") as f:
-        json.dump(relation_dict, f, indent=2)
+        with open(jsonFileName, "w") as f:
+            json.dump(relation_dict, f, indent=2)
+    except:
+        print("Hata!")
 
 
 def makeJson_console():
