@@ -2,6 +2,8 @@ import numpy as np
 
 
 def expScore(adata, geneSetScore):
+    
+    #TODO: adata.var_names kontrol et ve ENSEMBL id si varsa uyari mesaji dondur. 
 
     geneset = np.array([geneSetScore.get(var, 0.0) for var in adata.var_names])
     # Create a 1D array for the given Gene Set

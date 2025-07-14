@@ -10,6 +10,8 @@ import pandas as pd
 # ↑↑↑↑↑ Test makeJson module ↑↑↑↑↑
 
 adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
+#TODO : adata'nin her birine 10^-6 gibi bir deger eklenecek. adata.X sparse mi degil mi kontrol eden bir
+# kondisyon yaz
 # Read the anndata object.
 
 jsonFile = pjson("/home/sadi/Desktop/c8.all.v2025.1.Hs.json")
