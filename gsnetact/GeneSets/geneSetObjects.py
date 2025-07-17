@@ -31,7 +31,7 @@ class GeneSetMatrix:
 
     """
     
-    def __new__(cls, rawGeneSet):
+    def __new__(cls, rawGeneSet, _id):
 
         unique_identifiers = {}
         # The unique identifiers dictionary to hold the data of the unique
@@ -64,8 +64,11 @@ class GeneSetMatrix:
                 # the GeneList.
 
         n = len(unique_identifiers)
+        try:
+            matrix = np.zeros((geneCount, n))
+        except UnboundLocalError:
+            raise Exception(f"The gene set {_id} could not be processed, the process has been terminated.\nThis is probably because the Gene Set is empty in the JSON file you provided, please search the gene set's name in the file and check it. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct")
 
-        matrix = np.zeros((geneCount, n))
         # Create the matrix. TODO: Test the sparse matrix approach.
 
         for item in GeneList:
@@ -86,7 +89,7 @@ class GeneSet:
 
         self.id = _id
         self.asJson = _rawGeneSet
-        self.matrix = GeneSetMatrix(_rawGeneSet)
+        self.matrix = GeneSetMatrix(_rawGeneSet,self.id)
 
     @property
     def getID(self):
