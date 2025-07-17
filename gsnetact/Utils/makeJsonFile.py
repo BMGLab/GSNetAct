@@ -104,11 +104,10 @@ def parse_tsv(file_path):
 
 def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
 
-    # if fileType == "json":
-
-    # gene_sets = json.load(f)
-
-    if fileType == "gmt":
+    if fileType == "json":
+        with open(msigdbFile,"r") as f:
+            gene_sets = json.load(f)
+    elif fileType == "gmt":
         gene_sets = parse_gmt(msigdbFile)
     elif fileType == "tsv":
         gene_sets = parse_tsv(msigdbFile)
@@ -133,7 +132,6 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
 
             setBuffer.add(node1)
             setBuffer.add(node2)
-            print("HATA1")
             if gene_set_id not in relation_dict:
                 relation_dict[gene_set_id] = {}
 
@@ -144,11 +142,9 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
             if node2 not in relation_dict[gene_set_id]:
                 relation_dict[gene_set_id][node2] = {}
             relation_dict[gene_set_id][node2][node1] = combined_score
-        print("HATA2")
         for i in gene_sets[gene_set_id]['geneSymbols']:
             if i not in setBuffer:
                 relation_dict[gene_set_id][i] = {}
-    print("HATA3")
     with open(jsonFileName, "w") as f:
         json.dump(relation_dict, f, indent=2)
 

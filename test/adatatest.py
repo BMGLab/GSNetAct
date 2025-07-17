@@ -14,8 +14,8 @@ adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
 # kondisyon yaz
 # Read the anndata object.
 
-jsonFile = pjson("./test_data/deneme.json")
-#jsonFile = pjson("./test_data/deneme_errors.json")
+#jsonFile = pjson("./test_data/deneme.json")
+jsonFile = pjson("./test_data/deneme_errors.json")
 # Parse the json file into a pjson() object.
 
 gsnaObject = runGSNA(adata_, jsonFile, normalized=True)

@@ -32,7 +32,7 @@ class GeneSetMatrix:
     """
     
     def __new__(cls, rawGeneSet, _id):
-
+        
         unique_identifiers = {}
         # The unique identifiers dictionary to hold the data of the unique
         # position of an edge(weight, relation whetever you wanna call it)
@@ -64,10 +64,13 @@ class GeneSetMatrix:
                 # the GeneList.
 
         n = len(unique_identifiers)
+
         try:
             matrix = np.zeros((geneCount, n))
         except UnboundLocalError:
-            raise Exception(f"The gene set {_id} could not be processed, the process has been terminated.\nThis is probably because the Gene Set is empty in the JSON file you provided, please search the gene set's name in the file and check it. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct")
+            print(f"\nWARNING : The gene set {_id} could not be processed.\nThis is probably because the Gene Set is empty in the JSON file you provided, please search the gene set's name in the file and check it. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct\n")
+            
+            return None, 1
 
         # Create the matrix. TODO: Test the sparse matrix approach.
 
@@ -77,8 +80,8 @@ class GeneSetMatrix:
 
             w, r, c = item.weight, item.row, item.column
             matrix[r, c] = w
-
-        return matrix
+        
+        return matrix,0
 
 
 class GeneSet:
@@ -89,8 +92,7 @@ class GeneSet:
 
         self.id = _id
         self.asJson = _rawGeneSet
-        self.matrix = GeneSetMatrix(_rawGeneSet,self.id)
-
+        self.matrix, self.err = GeneSetMatrix(_rawGeneSet,self.id)
     @property
     def getID(self):
 
@@ -119,7 +121,8 @@ def getGSNA(jsonFile):
     for i in jsonFile:
 
         newGeneSet = GeneSet(f"{i}", jsonFile[i])
-
-        _list.append(newGeneSet)
+        
+        if newGeneSet.err != 1:
+            _list.append(newGeneSet)
 
     return _list
