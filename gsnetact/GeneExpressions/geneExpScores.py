@@ -11,6 +11,9 @@ def expScore(adata, geneSetScore):
     # from annData object. If the gene name from adata.var_names
     # is absent in the geneset, put 0 as the value of the index.
     
+    if not isinstance(adata.X, np.ndarray):
+        adata.X = adata.X.toarray()
+
     adata.X += 10**-6
     # To ensure that all expression scores have a non-zero contribution 
     # to the overall computation,add a negligible constant 

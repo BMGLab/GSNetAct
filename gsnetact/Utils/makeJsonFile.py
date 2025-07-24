@@ -124,6 +124,9 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
             print(f"Warning: The gene set {gene_set_id} could not be processed. This may have been caused by a network issue. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct")
             continue
 
+        relation_dict[gene_set_id] = {}
+        #TODO: If there is two gene sets with the same names, give a warning.
+
         setBuffer = set()
         for interaction in interactions:
             node1 = interaction['preferredName_A']
@@ -132,9 +135,8 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
 
             setBuffer.add(node1)
             setBuffer.add(node2)
-            if gene_set_id not in relation_dict:
-                relation_dict[gene_set_id] = {}
 
+                        
             if node1 not in relation_dict[gene_set_id]:
                 relation_dict[gene_set_id][node1] = {}
             relation_dict[gene_set_id][node1][node2] = combined_score
@@ -142,9 +144,11 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
             if node2 not in relation_dict[gene_set_id]:
                 relation_dict[gene_set_id][node2] = {}
             relation_dict[gene_set_id][node2][node1] = combined_score
+        
         for i in gene_sets[gene_set_id]['geneSymbols']:
             if i not in setBuffer:
                 relation_dict[gene_set_id][i] = {}
+    
     with open(jsonFileName, "w") as f:
         json.dump(relation_dict, f, indent=2)
 

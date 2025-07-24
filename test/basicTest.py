@@ -1,15 +1,14 @@
 from gsnetact import getGSNA, GeneSetScore, expScore, pjson
 
 import scanpy as sc
-import numpy as np
-
+import pandas as pd
 
 #Get the files.
-jsonFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/deneme.json"
+jsonFilePath = "../../yeahyeah.json"
 
 jsonFile = pjson(jsonFilePath)
 
-h5adFilePath = "/home/sadigungor/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad"
+h5adFilePath = "/home/sadi/Desktop/GSNetAct/test/test_data/pbmc3k.h5ad"
 adata = sc.read_h5ad(h5adFilePath)
 geneSetList = getGSNA(jsonFile)
 
@@ -17,11 +16,13 @@ arr = []
 for geneSet in geneSetList:
     # Calculate for each gene set.
     print(geneSet.matrix)
+    df = pd.DataFrame(geneSet.matrix)
+    df.to_csv(f"{geneSet.getID}.csv")
     _geneNames = geneSet.getGeneNames
     # Get the gene names necessary for geneExpScores.score() from
     # GeneSet object.
 
-    newGeneSetScore = GeneSetScore(geneSet.matrix, _geneNames)
+    newGeneSetScore = GeneSetScore(geneSet.getID,geneSet.matrix, _geneNames)
     print(newGeneSetScore)
     # Create gene set score without
     # the expressions.

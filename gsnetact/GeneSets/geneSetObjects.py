@@ -42,9 +42,8 @@ class GeneSetMatrix:
         GeneList = []
 
         for geneCount, gene in enumerate(rawGeneSet):
-
             for relatedGene in rawGeneSet[gene]:
-
+                
                 unique_hash = hash(gene) * hash(relatedGene) * hash(rawGeneSet[gene][relatedGene])
                 # Creating a unique hash to determine the
                 # unique position.
@@ -57,8 +56,8 @@ class GeneSetMatrix:
                     position_in_column += 1
 
                 GeneList.append(MatrixItem(float(rawGeneSet[gene][relatedGene]),
-                                           geneCount-1,
-                                           unique_identifiers[unique_hash]-1))
+                                           geneCount,
+                                           unique_identifiers[unique_hash]))
                 # Whether the edge is unique or not, create a MatrixItem
                 # to hold the position data and add it to
                 # the GeneList.
@@ -66,7 +65,8 @@ class GeneSetMatrix:
         n = len(unique_identifiers)
 
         try:
-            matrix = np.zeros((geneCount, n))
+            matrix = np.zeros((geneCount+1, n))
+            
         except UnboundLocalError:
             print(f"\nWARNING : The gene set {_id} could not be processed.\nThis is probably because the Gene Set is empty in the JSON file you provided, please search the gene set's name in the file and check it. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct\n")
             
@@ -80,7 +80,7 @@ class GeneSetMatrix:
 
             w, r, c = item.weight, item.row, item.column
             matrix[r, c] = w
-        
+       
         return matrix,0
 
 

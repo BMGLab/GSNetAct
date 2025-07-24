@@ -3,7 +3,7 @@ import numpy as np
 
 class GeneSetScore(dict):
 
-    def __init__(self, matrix, geneNamesList, epsilon=10**-6):
+    def __init__(self, geneID, matrix, geneNamesList, epsilon=10**-6):
 
         self.epsilon = epsilon
 

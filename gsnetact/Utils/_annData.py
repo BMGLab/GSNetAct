@@ -25,7 +25,7 @@ def runGSNA(adata, jsonFile, normalized=False):
 
         _geneNames = geneset.getGeneNames
 
-        newGeneSetScore = GeneSetScore(geneset.matrix, _geneNames)
+        newGeneSetScore = GeneSetScore(geneset.getID,geneset.matrix, _geneNames)
 
         newExpScore = expScore(adata, newGeneSetScore)
 
