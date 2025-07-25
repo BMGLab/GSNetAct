@@ -15,11 +15,13 @@ env/
 
 build/
 dist/
-*.egg_info/
+*.egg-info/
 .eggs/
 MANIFEST
 
 .nextflow/
 .nextflow.log*
+
+.directory
 
 README_PACKAGE.md
