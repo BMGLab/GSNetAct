@@ -4,7 +4,7 @@ import scanpy as sc
 import pandas as pd
 
 #Get the files.
-jsonFilePath = "./test_data/deneme.json"
+jsonFilePath = "./test_data/big_genesets_relations.json"
 
 jsonFile = pjson(jsonFilePath)
 

@@ -63,7 +63,7 @@ class GeneSetMatrix:
                 # the GeneList.
 
         n = len(unique_identifiers)
-
+    
         try:
             matrix = np.zeros((geneCount+1, n))
             

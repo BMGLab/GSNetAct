@@ -4,7 +4,6 @@ from ..GeneSets.geneSetScores import GeneSetScore
 from ..GeneExpressions.geneExpScores import expScore
 
 import numpy as np
-from pandas import DataFrame
 from anndata import AnnData
 
 
@@ -33,9 +32,7 @@ def runGSNA(adata, jsonFile, normalized=False):
 
     scoresArray = np.array(scoresArray).T
 
-    geneSetNamesArray = DataFrame(geneSetNamesArray)
-
-    adataScores = AnnData(X=scoresArray, var=geneSetNamesArray,
+    adataScores = AnnData(X=scoresArray, var={'geneset names': geneSetNamesArray},
                           obs=adata.obs)
     print(adataScores.var)
     if normalized:
