@@ -63,7 +63,7 @@ class GeneSetMatrix:
                 # the GeneList.
 
         n = len(unique_identifiers)
-
+    
         try:
             matrix = np.zeros((geneCount+1, n))
             
@@ -81,7 +81,7 @@ class GeneSetMatrix:
             w, r, c = item.weight, item.row, item.column
             matrix[r, c] = w
        
-        return matrix,0
+        return matrix/np.sum(matrix), 0
 
 
 class GeneSet:
