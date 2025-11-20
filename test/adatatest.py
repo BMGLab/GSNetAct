@@ -17,7 +17,7 @@ adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
 jsonFile = pjson("./test_data/big_genesets_relations.json")
 # Parse the json file into a pjson() object.
 
-gsnaObject = runGSNA(adata_, jsonFile, normalized=True)
+gsnaObject = runGSNA(adata_, jsonFile, normalized=False)
 # Call the createObject function from the package.
 
 df = pd.DataFrame(gsnaObject.X)

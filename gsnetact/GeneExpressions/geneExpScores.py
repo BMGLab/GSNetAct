@@ -20,7 +20,7 @@ def expScore(adata, geneSetScore):
     # to the overall computation,add a negligible constant 
     # to all entries in adata.X.
 
-    return _adataX(geneset)
+    return _adataX.dot(geneset)
     # Return the dot product of gene names and our array. Since the indexes of
     # both arrays point to the same gene names,
     # we can simply return the dot product.

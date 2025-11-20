@@ -34,7 +34,6 @@ def runGSNA(adata, jsonFile, normalized=False):
 
     adataScores = AnnData(X=scoresArray, var={'geneset names': geneSetNamesArray},
                           obs=adata.obs)
-    print(adataScores.var)
     if normalized:
         # If the normalized option is on, normalize the score data with
         # Quantile normalization and Z-Score normalization.
