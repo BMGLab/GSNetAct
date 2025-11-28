@@ -9,7 +9,8 @@ import pandas as pd
 ##############################################################
 # ↑↑↑↑↑ Test makeJson module ↑↑↑↑↑
 
-adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
+#adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
+adata_ = read_h5ad("/home/sadi/Desktop/luca_neutrophils.h5ad")
 #TODO : adata'nin her birine 10^-6 gibi bir deger eklenecek. adata.X sparse mi degil mi kontrol eden bir
 # kondisyon yaz
 # Read the anndata object.
@@ -18,6 +19,8 @@ jsonFile = pjson("./test_data/deneme.json")
 # Parse the json file into a pjson() object.
 
 gsnaObject = runGSNA(adata_, jsonFile, normalized=True)
+
+print(a["geneset names"])
 # Call the createObject function from the package.
 
 df = pd.DataFrame(gsnaObject.X)

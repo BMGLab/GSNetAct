@@ -32,10 +32,12 @@ def runGSNA(adata, jsonFile, normalized=False):
         scoresArray.append(newExpScore)
 
     scoresArray = np.array(scoresArray).T
+    
+    gsNamesArray = DataFrame()
+    
+    gsNamesArray["geneset names"] = geneSetNamesArray
 
-    geneSetNamesArray = DataFrame(geneSetNamesArray)
-
-    adataScores = AnnData(X=scoresArray, var=geneSetNamesArray,
+    adataScores = AnnData(X=scoresArray, var=gsNamesArray,
                           obs=adata.obs)
     print(adataScores.var)
     if normalized:

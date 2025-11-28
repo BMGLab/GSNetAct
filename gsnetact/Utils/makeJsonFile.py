@@ -102,7 +102,7 @@ def parse_tsv(file_path):
     return gene_sets
 
 
-def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
+def makeJson(msigdbFile, fileType, nonrelated = False, jsonFileName="geneSets.json"):
 
     if fileType == "json":
         with open(msigdbFile,"r") as f:
@@ -119,7 +119,7 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
     relation_dict = {}
     
     for gene_set_id, interactions in all_networks.items():
-        
+
         if interactions == None:
             print(f"Warning: The gene set {gene_set_id} could not be processed. This may have been caused by a network issue. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct")
             continue
@@ -144,11 +144,12 @@ def makeJson(msigdbFile, fileType, jsonFileName="geneSets.json"):
             if node2 not in relation_dict[gene_set_id]:
                 relation_dict[gene_set_id][node2] = {}
             relation_dict[gene_set_id][node2][node1] = combined_score
+       
+        if nonrelated == True:
+            for i in gene_sets[gene_set_id]['geneSymbols']:
+                if i not in setBuffer:
+                    relation_dict[gene_set_id][i] = {}
         
-        for i in gene_sets[gene_set_id]['geneSymbols']:
-            if i not in setBuffer:
-                relation_dict[gene_set_id][i] = {}
-    
     with open(jsonFileName, "w") as f:
         json.dump(relation_dict, f, indent=2)
 
@@ -164,5 +165,7 @@ def makeJson_console():
     parser.add_argument("--output", "-o",
                         help="Output file.")
 
+    parser.add_argument("--contain-non-related-genes",action="store_true")
+
     args = parser.parse_args()
-    makeJson(args.geneSymbols, args.fileType, args.output)
+    makeJson(args.geneSymbols, args.fileType, args.contain_non_related_genes, args.output)
