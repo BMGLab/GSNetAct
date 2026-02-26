@@ -18,7 +18,7 @@ class GeneSetScore(dict):
 
         num_rows, num_cols = matrix.shape
 
-        row_nz_counts = np.count_nonzero(matrix, axis=1)
+        row_nz_counts = matrix.getnnz(axis=1)
         # Get the non-zero element count for each row
 
         disconnected_genes = np.where(row_nz_counts == 0)[0]
@@ -33,17 +33,23 @@ class GeneSetScore(dict):
         # This way, genes that are not in relation to others
         # can have an effect to the score.
 
+        # Iterating over columns of a CSC matrix
         for col in range(num_cols):
+            start = matrix.indptr[col]
+            end = matrix.indptr[col+1]
+            rows = matrix.indices[start:end]
+            data = matrix.data[start:end]
 
-            i, j = np.nonzero(matrix[:, col])[0]
-            # Get nonzero rows as i,j
+            if len(rows) == 2:
+                i, j = rows
+                val_i, val_j = data
 
-            self[geneNamesList[i]] += matrix[i, col] * row_nz_counts[j]
-            # Multiply the value in the row i
-            # with the nonzero count in the row j and
-            # add that to the score of row i.
+                self[geneNamesList[i]] += val_i * row_nz_counts[j]
+                # Multiply the value in the row i
+                # with the nonzero count in the row j and
+                # add that to the score of row i.
 
-            self[geneNamesList[j]] += matrix[j, col] * row_nz_counts[i]
-            # Vice versa.
+                self[geneNamesList[j]] += val_j * row_nz_counts[i]
+                # Vice versa.
 
        

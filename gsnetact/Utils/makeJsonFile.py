@@ -19,7 +19,7 @@ def create_session():
 def fetch_filtered_string_network(genes,
                                   session,
                                   species="9606",
-                                  required_score=100,
+                                  required_score=400,
                                   limit=1000):
 
     api_url = "https://string-db.org/api/json/network"

@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import sparse
 
 from ..Utils.MatrixItem import MatrixItem
 
@@ -40,6 +41,7 @@ class GeneSetMatrix:
 
         position_in_column = 0
         GeneList = []
+        geneCount = -1
 
         for geneCount, gene in enumerate(rawGeneSet):
             for relatedGene in rawGeneSet[gene]:
@@ -64,24 +66,29 @@ class GeneSetMatrix:
 
         n = len(unique_identifiers)
 
-        try:
-            matrix = np.zeros((geneCount+1, n))
-            
-        except UnboundLocalError:
+        if geneCount == -1:
             print(f"\nWARNING : The gene set {_id} could not be processed.\nThis is probably because the Gene Set is empty in the JSON file you provided, please search the gene set's name in the file and check it. If the problem persists, please report it on GitHub: github.com/BMGLab/GSNetAct\n")
             
             return None, 1
 
-        # Create the matrix. TODO: Test the sparse matrix approach.
+        # Create the sparse matrix.
+
+        rows = []
+        cols = []
+        data = []
 
         for item in GeneList:
             # Build the incidence matrix using
             # the position data in the GeneList.
 
             w, r, c = item.weight, item.row, item.column
-            matrix[r, c] = w
+            rows.append(r)
+            cols.append(c)
+            data.append(w)
+
+        matrix = sparse.csc_matrix((data, (rows, cols)), shape=(geneCount+1, n))
        
-        return matrix,0
+        return matrix, 0
 
 
 class GeneSet:
