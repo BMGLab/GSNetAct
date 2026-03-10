@@ -10,16 +10,19 @@ def expScore(adata, geneSetScore):
     # with respect to gene names and their indexes
     # from annData object. If the gene name from adata.var_names
     # is absent in the geneset, put 0 as the value of the index.
-    
+
     if not isinstance(adata.X, np.ndarray):
+        
         adata.X = adata.X.toarray()
 
-    adata.X += 10**-6
+    _adataX = adata.X
+
+    _adataX += 10**-6
     # To ensure that all expression scores have a non-zero contribution 
     # to the overall computation,add a negligible constant 
     # to all entries in adata.X.
 
-    return adata.X.dot(geneset)
+    return _adataX.dot(geneset)
     # Return the dot product of gene names and our array. Since the indexes of
     # both arrays point to the same gene names,
     # we can simply return the dot product.
