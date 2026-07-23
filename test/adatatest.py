@@ -1,29 +1,43 @@
-from gsnetact import runGSNA, pjson
-from anndata import read_h5ad
+#!/usr/bin/env python
+"""End-to-end example: score PBMC3k against the bundled toy network.
+
+Run from this directory:  python adatatest.py
+"""
+
 import pandas as pd
+import scanpy as sc
 
+from gsnetact import pjson, runGSNA
 
-##############################################################
-# from gsnetact import makeJson
-# makeJson("The Path To Your GeneSets file.")
-##############################################################
-# ↑↑↑↑↑ Test makeJson module ↑↑↑↑↑
+adata = sc.read_h5ad("test_data/pbmc3k.h5ad")
+network = pjson("test_data/deneme.json")
 
-adata_ = read_h5ad("./test_data/pbmc3k.h5ad")
-#TODO : adata'nin her birine 10^-6 gibi bir deger eklenecek. adata.X sparse mi degil mi kontrol eden bir
-# kondisyon yaz
-# Read the anndata object.
+# pbmc3k ships raw counts in .X, so normalise before scoring: a weighted sum of
+# raw counts measures library size more than it measures pathway activity.
+adata.layers["counts"] = adata.X.copy()
+sc.pp.normalize_total(adata, target_sum=1e4)
+sc.pp.log1p(adata)
+adata.layers["lognorm"] = adata.X.copy()
 
-jsonFile = pjson("./test_data/big_genesets_relations.json")
-# Parse the json file into a pjson() object.
+activity = runGSNA(adata, network, layer="lognorm")
 
-gsnaObject = runGSNA(adata_, jsonFile, normalized=False)
-# Call the createObject function from the package.
+print(activity)
+print("\nparameters:")
+for key, value in activity.uns["gsnetact"].items():
+    print(f"  {key}: {value}")
 
-df = pd.DataFrame(gsnaObject.X)
-# Create a pandas dataframe from the AnnData object's X layer.
-df.columns = gsnaObject.var
-# Set the column names to the geneset names that are located in the var layer.
+print("\nper-set network support:")
+print(activity.var[["n_genes", "n_genes_in_data", "n_edges", "n_isolated_genes",
+                    "weight_gini", "uniform_fallback", "top_weighted_gene"]])
 
-df.to_csv("output.csv", sep="\t")
-# Create an output file, named  as output.csv.
+first = activity.var_names[0]
+weights = activity.uns["gsnetact_gene_weights"][first]
+top = sorted(weights.items(), key=lambda item: item[1], reverse=True)[:5]
+print(f"\ntop-weighted genes in {first}:")
+for gene, weight in top:
+    print(f"  {gene:12s} {weight:.4f}")
+
+pd.DataFrame(activity.X, index=activity.obs_names, columns=activity.var_names).to_csv(
+    "output.tsv", sep="\t"
+)
+print("\nwrote output.tsv")

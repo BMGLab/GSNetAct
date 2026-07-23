@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gsnetact"
+version = "0.1.0"
+description = "Network-weighted gene-set activity for single-cell data"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE.md" }
+dependencies = [
+    "numpy>=1.21",
+    "scipy>=1.7",
+    "anndata>=0.8",
+    "scikit-learn>=1.0",
+    "requests>=2.25",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/BMGLab/GSNetAct"
+
+[project.scripts]
+makeGeneSets = "gsnetact.Utils.makeJsonFile:makeJson_console"
+
+[tool.setuptools.packages.find]
+include = ["gsnetact*"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]

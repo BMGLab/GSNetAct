@@ -1,28 +1,10 @@
-from setuptools import setup, find_packages
+"""Shim for tooling that still invokes setup.py directly.
 
-with open("README_PACKAGE.md", "r") as f:
-    desc = f.read()
+All packaging metadata lives in ``pyproject.toml``.  The previous version read
+``README_PACKAGE.md``, which is git-ignored and absent from the repository, so
+``pip install .`` failed on a clean clone with ``FileNotFoundError``.
+"""
 
-setup(name="gsnetact",
+from setuptools import setup
 
-      version="0.0.17",
-
-      description="The GSNetAct Python Package.",
-
-      long_description=desc,
-
-      long_description_content_type="text/markdown",
-
-      packages=find_packages(),
-
-      entry_points={
-
-          'console_scripts': [
-
-              'makeGeneSets=gsnetact.Utils.makeJsonFile:makeJson_console'
-
-              ]
-
-          },
-
-      )
+setup()
