@@ -87,6 +87,19 @@ runGSNA(
 )
 ```
 
+**Reproducing the GSNetAct paper.** The default (`alpha=0.5`, `min_detection=0.05`)
+was fit for cell-identity scoring. For **coordinated condition/state programmes**
+— the regime the paper focuses on (e.g. interferon stimulation) — the tuned
+configuration is stronger hub damping and a stricter context filter:
+
+```python
+runGSNA(adata, network, weights="diffusion", layer="lognorm",
+        min_detection=0.2, weight_options={"alpha": 1.0, "steps": 2})
+```
+
+`alpha` is a genuine tuning knob, not a universal constant; sweep it for your
+signal rather than assuming the identity-fit default (see CHANGELOG).
+
 **`weights`** — `"diffusion"` (default) weights a gene by
 `(D^-0.5 A D^-0.5)^2 · 1`. `sqrt(strength)` is the leading eigenvector of that
 operator, so influence grows with the square root of the interaction evidence

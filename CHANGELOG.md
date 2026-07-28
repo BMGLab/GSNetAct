@@ -1,5 +1,37 @@
 # Changelog
 
+## Unreleased
+
+### External validation on an independent single-cell clustering benchmark
+
+The 0.1.0 weighting change was re-tested end-to-end in a separate
+network-vs-mean clustering benchmark (CITE-seq PBMC identity, Kang IFN-beta and
+LUCA TAN condition; STRING required_score=400; identical robust-z -> PCA -> kNN
+harness, only the within-set weighting varying). Two claims held and one was
+refined.
+
+**Confirmed.** Legacy degree weighting is statistically indistinguishable from
+the unweighted per-set mean on every large collection tested (advantage within
++/-0.02 NMI), and *below* it on the curated non-redundant collection - the
+regime 0.1.0 was built for. Diffusion recovers a topology benefit the legacy
+formula does not: on the ~600-set C8 cell-type collection it beats the mean by
++0.075 NMI (identity) and +0.033 (IFN state) where legacy manages +0.010 /
++0.015. Restricting the prior to detected genes (`restrict_to_context`,
+`min_detection`) was the single largest lever for the expression-defined IFN
+state (up to +0.10 NMI over the mean), reinforcing the 0.1.0 default.
+
+**Refined - `alpha` is dataset-dependent, and the default is unchanged.** The
+package sets `alpha=0.5` on the strength of its own two datasets, and that
+remains the default. But on the IFN-beta condition benchmark the advantage over
+the mean kept *rising* toward `alpha=1.0` (maximal hub damping, weight pushed to
+peripheral effectors) rather than peaking at 0.5 - consistent with a cytokine
+state being marked by regulated peripheral genes, not hubs. The lesson is that
+`alpha` is a genuine tuning knob, not a universal constant: users scoring
+condition/state programmes (as opposed to cell identity) should sweep it via
+`weight_options={"alpha": ...}` rather than assume 0.5 is optimal for their
+signal. The default is *not* changed on the basis of a single benchmark dataset
+without replicate-level confidence intervals.
+
 ## 0.1.0
 
 **The default gene weighting changed.** `runGSNA` no longer weights a gene by

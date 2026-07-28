@@ -87,6 +87,15 @@ and fall away on either side (NMI, CITE-seq / IFN-beta): 0.493 / 0.105 at
 ``alpha = 0``, 0.543 / 0.142 at 0.25, **0.574 / 0.149 at 0.5**, 0.433 / 0.091 at
 0.75, 0.459 / 0.017 at 1.0.
 
+``alpha = 0.5`` is the default, but the optimum is dataset-dependent.  On an
+independent single-cell clustering benchmark the advantage over the unweighted
+mean for a *condition* signal (IFN-beta stimulation) kept rising toward
+``alpha = 1`` rather than peaking at 0.5 - a cytokine state is marked by
+regulated peripheral effectors, so damping hubs harder helps.  Treat ``alpha``
+as a tuning knob for state/condition programmes (sweep it via
+``weight_options={"alpha": ...}``); 0.5 remains the default for cell-identity
+scoring, where it was fit.
+
 One caveat, stated because it is easy to misread the mechanism: on a *pure star*
 the legacy formula happens to give the hub and its leaves identical weights,
 because a leaf's single edge is multiplied by the hub's large degree.  The
